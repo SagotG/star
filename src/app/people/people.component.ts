@@ -1,5 +1,7 @@
-import { Component, TemplateRef } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { PeopleInterface } from './models/people.model';
+import { PeopleService } from './services/people.service';
 
 @Component({
   selector: 'app-people',
@@ -26,10 +28,20 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
       <div class="modal-body">This is a modal.</div>
     </ng-template>`,
 })
-export class PeopleComponent {
+export class PeopleComponent implements OnInit {
   modalRef?: BsModalRef;
 
-  constructor(private modalService: BsModalService) {}
+  peopleList: PeopleInterface[] = [];
+  constructor(
+    private readonly modalService: BsModalService,
+    private readonly peopleService: PeopleService
+  ) {}
+
+  ngOnInit(): void {
+    this.peopleService.getAllPeople().subscribe({
+      next: (value) => (this.peopleList = value),
+    });
+  }
 
   openModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template);

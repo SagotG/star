@@ -16,3 +16,9 @@ export interface PeopleInterface {
   edited: Date;
   url: string;
 }
+export interface PeopleResult {
+  count: number;
+  next: string;
+  previous?: any;
+  results: PeopleInterface[];
+}
