@@ -1,4 +1,6 @@
-export interface PeopleInterface {
+import { IResponse } from './root.model';
+
+export interface People {
   name: string;
   height: string;
   mass: string;
@@ -9,10 +11,16 @@ export interface PeopleInterface {
   gender: string;
   homeworld: string;
   films: string[];
-  species: any[];
+  species: string[];
   vehicles: string[];
   starships: string[];
   created: Date;
   edited: Date;
   url: string;
+  id?: string;
+  next?: string | null;
+}
+
+export interface PeopleResponse extends IResponse {
+  results: People[];
 }
