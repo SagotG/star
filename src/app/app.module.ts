@@ -6,21 +6,12 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './component/navbar.component';
-import { PeopleModule } from './people/people.module';
-import { PlanetsModule } from './planets/planets.module';
 import { ApiInterceptor } from './interceptors/api-interceptor.service';
 
 @NgModule({
   declarations: [AppComponent],
 
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    NavbarComponent,
-    PeopleModule,
-    PlanetsModule,
-  ],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, NavbarComponent],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },
     {
